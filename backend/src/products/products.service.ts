@@ -10,7 +10,11 @@ export class ProductsService {
     return products;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  async findOne(name: string) {
+    console.log(name);
+    const products = await this.productModel
+      .find({ nombre: { $regex: `.*${name}.*`, $options: 'i' } })
+      .select('-__v');
+    return products;
   }
 }
