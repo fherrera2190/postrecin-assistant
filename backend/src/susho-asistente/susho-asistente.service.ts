@@ -8,77 +8,30 @@ import { EnvConfiguration } from 'src/config/app.config';
 export class SushoAsistenteService {
   private openai = new OpenAI({
     baseURL: 'http://localhost:11434/v1',
+    // apiKey:"",
   });
 
   private messages: any = [
     {
       role: 'system',
       content: `
-      You are a customer service and online sales assistant called "Sushiko". You specialize in assisting customers with sushi-related inquiries, resolving issues, and guiding them through online purchases.
+                Asume que eres un asistente de inteligencia artificial para clasificar intenciones de usuarios. 
+      Devuelve únicamente una palabra clave que represente la intención basada en las siguientes opciones:
       
-      You should follow these instructions to assist with the sale:
-    - Don't invent products or services.
-    - Understand the customer's request and gather relevant product details or information about their inquiry.
-    - Help the customer view products and assist them in selecting items they wish to add to their cart.
-    - Assist with adding products to the cart and confirm if they want to proceed with their selection.
-    - Allow the customer to review their cart by showing them the contents, and assist with any modifications, such as removing items from the cart if needed.
-    - Guide the customer to confirm their order, ensuring that all details, such as product selections, quantities, and payment information, are accurate before finalizing the transaction.
-    - Address any additional questions or concerns they may have about the products, payment, or delivery. Once the customer is satisfied, complete the sale and close the case.
-    
-    * show this options when the customer asks for help:
-      1- Show products
-      2- Show cart
-      3- Add product to cart, example: add 1 maki de pollo
-      4- Delete cart
-      5- Exit
+      - "showProducts showMenu verMenu verCata" si el usuario quiere ver productos.
+      - "help" si el usuario necesita ayuda o soporte.
+      - "exit" si el usuario quiere salir.
+      - "unknown" si no puedes clasificar la intención.
+      
+      Ejemplo de entrada: "quiero ver los productos"
+      Respuesta esperada: "showProducts"
+      
+      Entrada: 'userInput'
+      Respuesta esperada:
 
-
-    - Do not answer anything that is not related to the customer's request.
-
-
-    - You can use this information to answer the customer's question:
-      Promotions:
-
-    Couples Combo: 20 pieces + one drink of choice for $19.99.
-    Happy Hour Sushi: 20% off on orders placed between 3:00 p.m. and 5:00 p.m.
-
-    Delivery Policy:
-        
-        Delivery Areas: Major cities within a 15 km radius from the branch.
-        Delivery Fee: $2.00 for orders under $20. Free delivery for orders over $20.
-        Estimated Delivery Time: 30-60 minutes, depending on the location.
-        
-    Refund Policy:
-        
-        Refunds are available for incorrect orders or delivery issues.
-        Customers must report issues within 24 hours of receiving their order.
-        
-    Frequently Asked Questions:
-        
-        Do you offer gluten-free options?
-            Yes, we provide gluten-free soy sauce and specific menu items for those with gluten restrictions.
-        
-        Do you have vegan options?
-            Yes, we offer vegetable makis, tofu dishes, and our Veggie Sushi Platter.
-        
-        How can I track my order?
-            You will receive a tracking link to monitor the status of your delivery in real time.
-        
-    Contact Information:
-        
-        Phone: +1 800-SUSHIKO (800-787-4456)
-        Email: support@sushiko.com
-        Website: www.sushiko.com
-        Address: 123 Sushi Lane, Tokyo Town, Food City.
-        Customer Support Hours: Monday to Sunday, 9:00 a.m. to 9:00 p.m.
-        
-    Only call a tool once in a single message.
-    If you need to fetch a piece of information from a system or document that you don't have access to, give a clear, confident answer with some dummy values.
-          
         `,
     },
   ];
-
   async createThread() {}
 
   async userQuestion(questionDto: QuestionDto) {
@@ -87,14 +40,32 @@ export class SushoAsistenteService {
       content: questionDto.question,
     });
     try {
-      const response = await this.getResponseWithTools();
+      const response = await this.getResponseWithoutTools();
 
       this.messages.push(response.choices[0].message);
 
-      if (response.choices[0].message.tool_calls) {
+      console.log(response.choices[0].message);
+
+      if (response.choices[0].finish_reason === 'tool_calls') {
         await this.handleFunctionCall(response);
       }
 
+      return this.messages;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  }
+  async getInstruction(questionDto: QuestionDto) {
+    this.messages.push({
+      role: 'user',
+      content: questionDto.question,
+    });
+
+    try {
+      const response = await this.getResponseWithoutTools();
+
+      this.messages.push(response.choices[0].message);
       return this.messages;
     } catch (error) {
       console.log(error);
@@ -143,7 +114,7 @@ export class SushoAsistenteService {
       } else {
         this.messages.push({
           role: 'tool',
-          content: 'I dont understand, please try again',
+          content: 'I cant answer this',
           name: functionName,
           tool_call_id: toolCall.id,
         });

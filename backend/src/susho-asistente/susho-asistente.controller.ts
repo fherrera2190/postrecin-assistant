@@ -13,6 +13,6 @@ export class SushoAsistenteController {
 
   @Post('user-question')
   async userQuestion(@Body() questionDto: QuestionDto) {
-    return this.sushoAsistenteService.userQuestion(questionDto);
+    return this.sushoAsistenteService.getInstruction(questionDto);
   }
 }
