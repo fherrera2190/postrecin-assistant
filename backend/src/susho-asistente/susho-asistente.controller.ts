@@ -15,4 +15,8 @@ export class SushoAsistenteController {
   async userQuestion(@Body() questionDto: QuestionDto) {
     return this.sushoAsistenteService.getInstruction(questionDto);
   }
+  @Post('get-instruction')
+  async getInstruction(@Body() questionDto: QuestionDto) {
+    return this.sushoAsistenteService.getInstruction(questionDto);
+  }
 }
