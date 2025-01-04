@@ -20,7 +20,7 @@ Your task is as follows:
         "show_products" if the user wants to see products.
         "show_cart" if the user wants to view the cart.
         "confirm_order" if the user wants to confirm the order.
-        "exit" if the user wants to exit.
+        "end" if the user wants to end.
         "unknown" if you cannot classify the intent or do not understand the input.
 
     Return only the corresponding keyword.
@@ -36,14 +36,14 @@ Examples:
     Input: "I want to see my cart"
     Output: "show_cart"
 
-    Input: "exit"
-    Output: "exit"
+    Input: "end"
+    Output: "end"
 
     Input: "quiero ver los productos"
     Output: "show_products"
 
     Input: "salir"
-    Output: "exit"
+    Output: "end"
 
     Input: "asdasfglkjja"
     Output: "unknown"

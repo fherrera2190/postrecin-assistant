@@ -14,7 +14,7 @@ export const toolsGetInstruction: any = [
               'show_cart',
               'confirm_order',
               'unknown',
-              'exit',
+              'end',
             ],
             description: `Action that the user wants to perform. Can be one of:
           
@@ -22,7 +22,7 @@ export const toolsGetInstruction: any = [
               - show_cart: Used to show the cart of the customer.
               - unknown: When the AI cannot classify the intent.
               - confirm_order: Used to confirm the order of the customer.
-              - exit: Used to exit the conversation.`,
+              - end: Used to exit the conversation.`,
           },
         },
         required: ['question'],
@@ -40,8 +40,8 @@ export const get_instructions = ({ question }) => {
       return 'show_cart';
     case 'confirm_order':
       return 'confirm_order';
-    case 'exit':
-      return 'exit';
+    case 'end':
+      return 'end';
     default:
       return 'unknown';
   }
