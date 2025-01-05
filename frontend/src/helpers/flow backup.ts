@@ -1,124 +1,132 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const cart: any = [];
-
 
 export const flow = {
   start: {
-    message: "Hi there! How can I help you?",
-    options: [
-      "Show Products",
-      "Show Cart",
-      "Ask me something",
-      "Confirm Order",
-      "exit",
-    ],
-    path: (params: any) => {
-      switch (params.userInput) {
-        case "Show Products":
-          return "showProducts";
+    message: async (params: any) => {
+      const response = await fetch(
+        "http://localhost:3000/susho-asistente/user-question",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: "cliente dijo hola" }),
+        }
+      );
 
-        case "Show Cart":
-          return "showCart";
+      const { data } = await response.json();
 
-        case "Confirm Order":
-          return "confirmOrder";
+      params.injectMessage(data.response);
 
-        case "exit":
-          return "end";
-
-        default:
-          return "";
-      }
+      params.goToPath("getInstruction");
     },
   },
 
-  showProducts: {
+  getInstruction: {
+    message: `
+    opciones:
+    1. Mostrar productos
+    2. Mostrar carrito
+    4. Confirmar pedido
+    5. Salir
+    `,
+
+    path: async (params: any) => {
+      const response = await fetch(
+        "http://localhost:3000/susho-asistente/get-instruction",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: params.userInput.trim() }),
+        }
+      );
+
+      const { data } = await response.json();
+      const { instruction } = data;
+
+      console.log(instruction);
+      if (instruction === "exit") return "end";
+      if (params.userInput === "cancelar") return "getInstruction";
+      return instruction;
+    },
+  },
+
+  show_products: {
     message: "Select a product:",
     checkboxes: async () => {
       const response = await fetch("http://localhost:3000/products");
       let products = await response.json();
       products = products.map((product: any) => product.nombre);
 
-      return products;
+      return { items: products, sendOutput: true, reusable: true };
     },
-    options: ["cancel"],
+    function: async (params: any) => {
+      let selectedProducts = params.userInput.split(",");
 
-    function: (params: any) => {
-      const selecProducts = params.userInput.split(",");
+      console.log(selectedProducts);
 
-      for (const product of selecProducts) {
-        // cart.push({ product: product.trim(), quantity: 1 });
-        // params.injectMessage(`Has added 1 ${product}`);
-        console.log(product);
-      }
+      selectedProducts = selectedProducts.map((product: any) => {
+        return product.trim();
+      });
+
+      console.log(selectedProducts);
     },
-
-    path: (params: any) => {
-      if (params.userInput === "cancel") {
-        return "start";
-      }
-      return "selecQuantity";
+    path: async (params: any) => {
+      return "getInstruction";
     },
   },
-  showCart: {
+
+  show_cart: {
+    message: async (params) => {
+      params.injectMessage(`
+      Tus pedidos son:
+      1 x maki
+      1 x roll
+      1 x nigiri
+     `);
+      params.injectMessage(`Te puedo ayudar en algo más?`);
+      params.goToPath("getInstruction");
+    },
+  },
+
+  unknown_command: {
     message: async (params: any) => {
-      if (cart.length === 0) {
-        await params.injectMessage("Your cart is empty");
-        await params.goToPath("start");
-      } else {
-        const response = await fetch("http://localhost:3000/products");
-        let products = await response.json();
-        const cartProducts = cart.map((product: any) => product.product);
-
-        products = products.filter((product: any) => {
-          console.log(product.nombre);
-          if (cartProducts.includes(product.nombre)) return product;
-        });
-
-        console.log(products);
-        let respuesta = "";
-        for (const product of cart) {
-          respuesta += `${product.product} x ${product.quantity}\n`;
+      const response = await fetch(
+        "http://localhost:3000/susho-asistente/user-question",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: params.userInput.trim() }),
         }
-        params.injectMessage(respuesta);
-        await params.goToPath("start");
-      }
-    },
+      );
 
-    path: "start",
-  },
-  selecQuantity: {
-    message: async (params: any) => {
-      const selecProducts = params.userInput.split(",");
-      for (const product of selecProducts) {
-        cart.push({ product: product.trim(), quantity: 1 });
-        params.injectMessage(`Has added 1 ${product}`);
-      }
-
-      return "Do you want to change the quantity or go to the main menu?";
+      const { data } = await response.json();
+      console.log(data);
+      return data.response;
     },
-    options: ["Yes, I want to change the quantity", "No, go to the main menu"],
-    path: async (params: any) => {
-      if (params.userInput === "Yes, I want to change the quantity") {
-        return "ask_age";
-      }
-
-      return "start";
-    },
-  },
-  ask_age: {
-    message: "Please enter the quantity:",
-    // function: (params:any) => setForm({ ...form, age: params.userInput }),
-    path: async (params: any) => {
-      if (isNaN(Number(params.userInput))) {
-        await params.injectMessage("Age needs to be a number!");
-        return;
-      }
-      return "start";
-    },
+    path: "getInstruction",
   },
   end: {
-    message: "Thank you for your interest, we will get back to you shortly!",
+    message: async (params: any) => {
+      const response = await fetch(
+        "http://localhost:3000/susho-asistente/user-question",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: params.userInput.trim() }),
+        }
+      );
+
+      const { data } = await response.json();
+
+      return data.response;
+    },
 
     options: ["Start new conversation!"],
     path: "start",

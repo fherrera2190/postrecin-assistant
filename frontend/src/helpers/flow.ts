@@ -2,9 +2,7 @@
 
 export const flow = {
   start: {
-    message: "Hi there! How can I help you?",
-
-    path: async (params: any) => {
+    message: async (params: any) => {
       const response = await fetch(
         "http://localhost:3000/susho-asistente/user-question",
         {
@@ -12,45 +10,57 @@ export const flow = {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ question: params.userInput, threadId: "" }),
+          body: JSON.stringify({ question: "cliente dijo hola" }),
         }
       );
 
-      const data = await response.json();
+      const { data } = await response.json();
 
-      console.log(data.instruction);
-
-      return data.instruction;
+      await params.injectMessage(data.response);
     },
+    path: "show_art",
   },
 
-  show_products: {
-    message: "Select a product:",
-    checkboxes: async () => {
-      const response = await fetch("http://localhost:3000/products");
-      let products = await response.json();
-      products = products.map((product: any) => product.nombre);
+  show_art: {
+    // message: "No tienes productos en tu carrito",
+    message: async (params) => {
+      const cart: any = ["a"];
 
-      return products;
+      if (cart.length < 1) {
+        await params.injectMessage("No tienes productos en tu carrito");
+        return await params.goToPath("end");
+      }
+
+      await params.injectMessage(`'Productos en tu carrito:'
+        1 x maki
+        1 x sashimi
+        1 x nigiri    
+        `);
+      await params.injectMessage(`Total: $10.00`);
+      await params.injectMessage(`Que deseas hacer?`);
+      return "";
     },
+
+    options: ["Agregar mas productos", "Confirmar pedido", "Volver al menu"],
     chatDisabled: true,
-    function: async (params) => {
-      let selectedProducts = params.userInput.split(",");
 
-      console.log(selectedProducts);
-
-      selectedProducts = selectedProducts.map((product: any) => {
-        return product.trim();
-      });
-
-      console.log(selectedProducts);
-    },
-    path: async (params) => {
-      if (params.userInput.trim().toLowerCase() === "cancel") return "start";
+    path: (params) => {
+      if (params.userInput === "Agregar mas productos") {
+        return "show_art";
+      }
+      if (params.userInput === "Confirmar pedido") {
+        return "confirm_purchase";
+      }
+      if (params.userInput === "Volver al menu") {
+        return "end";
+      }
     },
   },
+
   end: {
-    message: "Thank you for your interest, we will get back to you shortly!",
+    message: async (params) => {
+      return "";
+    },
 
     options: ["Start new conversation!"],
     path: "start",

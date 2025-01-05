@@ -11,6 +11,7 @@ export const settings = {
   // },
   general: {
     showFooter: false,
+    flowStartTrigger: "ON_CHATBOT_INTERACT",
   },
   // chatHistory: { storageKey: "example_basic_form" },
   userBubble: {
@@ -29,6 +30,6 @@ export const settings = {
   },
   tooltip: {
     // mode: "ALWAYS",
-    text: "Chat with me",
+    text: "Ask me anything",
   },
 };

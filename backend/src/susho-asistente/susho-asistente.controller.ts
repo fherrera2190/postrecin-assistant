@@ -6,14 +6,9 @@ import { QuestionDto } from './dtos/question.dto';
 export class SushoAsistenteController {
   constructor(private readonly sushoAsistenteService: SushoAsistenteService) {}
 
-  @Post('create-thread')
-  async createThread() {
-    return this.sushoAsistenteService.createThread();
-  }
-
   @Post('user-question')
-  async userQuestion(@Body() questionDto: QuestionDto) {
-    return this.sushoAsistenteService.getInstruction(questionDto);
+  async getResponse(@Body() questionDto: QuestionDto) {
+    return this.sushoAsistenteService.getResponse(questionDto);
   }
   @Post('get-instruction')
   async getInstruction(@Body() questionDto: QuestionDto) {
