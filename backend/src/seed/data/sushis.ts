@@ -13,137 +13,101 @@ interface SeedProduct {
 export const sushis: SeedProduct[] = [
   {
     image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_1920.jpg',
+      thumbnail: './assets/images/image-waffle-thumbnail.jpg',
+      mobile: './assets/images/image-waffle-mobile.jpg',
+      tablet: './assets/images/image-waffle-tablet.jpg',
+      desktop: './assets/images/image-waffle-desktop.jpg',
     },
-    name: 'Salmon Sushi',
-    category: 'Nigiri',
-    price: 3.5,
-  },
-  {
-    image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_1920.jpg',
-    },
-    name: 'Tuna Sushi Roll',
-    category: 'Roll',
-    price: 4.5,
-  },
-  {
-    image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_1920.jpg',
-    },
-    name: 'Avocado Maki',
-    category: 'Maki',
-    price: 3.0,
-  },
-  {
-    image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_1920.jpg',
-    },
-    name: 'Shrimp Tempura Roll',
-    category: 'Roll',
-    price: 5.0,
-  },
-  {
-    image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_1920.jpg',
-    },
-    name: 'Vegetable Sushi',
-    category: 'Vegetarian',
-    price: 3.8,
-  },
-  {
-    image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_1920.jpg',
-    },
-    name: 'Dragon Roll',
-    category: 'Special Roll',
+    name: 'Waffle with Berries',
+    category: 'Waffle',
     price: 6.5,
   },
   {
     image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_1920.jpg',
+      thumbnail: './assets/images/image-creme-brulee-thumbnail.jpg',
+      mobile: './assets/images/image-creme-brulee-mobile.jpg',
+      tablet: './assets/images/image-creme-brulee-tablet.jpg',
+      desktop: './assets/images/image-creme-brulee-desktop.jpg',
     },
-    name: 'California Roll',
-    category: 'Roll',
-    price: 4.0,
+    name: 'Vanilla Bean Crème Brûlée',
+    category: 'Crème Brûlée',
+    price: 7.0,
   },
   {
     image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_1920.jpg',
+      thumbnail: './assets/images/image-macaron-thumbnail.jpg',
+      mobile: './assets/images/image-macaron-mobile.jpg',
+      tablet: './assets/images/image-macaron-tablet.jpg',
+      desktop: './assets/images/image-macaron-desktop.jpg',
     },
-    name: 'Eel Sushi',
-    category: 'Nigiri',
+    name: 'Macaron Mix of Five',
+    category: 'Macaron',
+    price: 8.0,
+  },
+  {
+    image: {
+      thumbnail: './assets/images/image-tiramisu-thumbnail.jpg',
+      mobile: './assets/images/image-tiramisu-mobile.jpg',
+      tablet: './assets/images/image-tiramisu-tablet.jpg',
+      desktop: './assets/images/image-tiramisu-desktop.jpg',
+    },
+    name: 'Classic Tiramisu',
+    category: 'Tiramisu',
     price: 5.5,
   },
   {
     image: {
-      thumbnail:
-        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_640.jpg',
-      mobile:
-        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_960_720.jpg',
-      tablet:
-        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_1280_720.jpg',
-      desktop:
-        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_1920.jpg',
+      thumbnail: './assets/images/image-baklava-thumbnail.jpg',
+      mobile: './assets/images/image-baklava-mobile.jpg',
+      tablet: './assets/images/image-baklava-tablet.jpg',
+      desktop: './assets/images/image-baklava-desktop.jpg',
     },
-    name: 'Spicy Tuna Roll',
-    category: 'Roll',
+    name: 'Pistachio Baklava',
+    category: 'Baklava',
+    price: 4.0,
+  },
+  {
+    image: {
+      thumbnail: './assets/images/image-meringue-thumbnail.jpg',
+      mobile: './assets/images/image-meringue-mobile.jpg',
+      tablet: './assets/images/image-meringue-tablet.jpg',
+      desktop: './assets/images/image-meringue-desktop.jpg',
+    },
+    name: 'Lemon Meringue Pie',
+    category: 'Pie',
     price: 5.0,
+  },
+  {
+    image: {
+      thumbnail: './assets/images/image-cake-thumbnail.jpg',
+      mobile: './assets/images/image-cake-mobile.jpg',
+      tablet: './assets/images/image-cake-tablet.jpg',
+      desktop: './assets/images/image-cake-desktop.jpg',
+    },
+    name: 'Red Velvet Cake',
+    category: 'Cake',
+    price: 4.5,
+  },
+  {
+    image: {
+      thumbnail: './assets/images/image-brownie-thumbnail.jpg',
+      mobile: './assets/images/image-brownie-mobile.jpg',
+      tablet: './assets/images/image-brownie-tablet.jpg',
+      desktop: './assets/images/image-brownie-desktop.jpg',
+    },
+    name: 'Salted Caramel Brownie',
+    category: 'Brownie',
+    price: 4.5,
+  },
+  {
+    image: {
+      thumbnail: './assets/images/image-panna-cotta-thumbnail.jpg',
+      mobile: './assets/images/image-panna-cotta-mobile.jpg',
+      tablet: './assets/images/image-panna-cotta-tablet.jpg',
+      desktop: './assets/images/image-panna-cotta-desktop.jpg',
+    },
+    name: 'Vanilla Panna Cotta',
+    category: 'Panna Cotta',
+    price: 6.5,
   },
 ];
