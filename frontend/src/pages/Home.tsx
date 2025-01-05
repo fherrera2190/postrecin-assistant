@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BuyModal, CartSection, ListProducts } from "../components";
-import products from "../data/data.json";
-import { ChatbotIA } from "../components/ChatbotIA";
 import { MyChatBot } from "../components/MyChatBot";
+import appApi from "../api/appAPi";
 
 export const Home = () => {
   const [modal, setModal] = useState(false);
-
+  const [products, setProducts] = useState([]);
   const toggleModal = () => {
     setModal(!modal);
   };
+
+  useEffect(() => {
+    appApi
+      .get("/products")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>

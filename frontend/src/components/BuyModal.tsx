@@ -1,11 +1,6 @@
-import { useContext } from "react";
 import { ListOrderProducts } from "./ListOrderProducts";
-import CartContext from "../context/cart/CartContext";
-import { ProductInCart } from "../interfaces";
 
 export const BuyModal = ({ modal }: { modal: boolean }) => {
-  const { state,total } = useContext(CartContext);
-  const productsInCart: ProductInCart[] = Object.values(state);
   return (
     <div className="modal" style={{ display: modal ? "block" : "none" }}>
       <div className="modal-content">
@@ -29,19 +24,13 @@ export const BuyModal = ({ modal }: { modal: boolean }) => {
         <section className="modal-section">
           <h6>We hope you enjoy your food!</h6>
           <article>
-            <ListOrderProducts productsInCart={productsInCart} />
+            <ListOrderProducts productsInCart={[]} />
             <p className="order-total">
               <small className="text-order-total">Order Total</small>
-              <span>${parseFloat(total + "").toFixed(2)}</span>
+              <span>${12}</span>
             </p>
           </article>
-          <button
-            className="btn_generic"
-            onClick={() => {
-              window.location.reload();
-              localStorage.removeItem("cart");
-            }}
-          >
+          <button className="btn_generic" onClick={() => {}}>
             Start new order
           </button>
         </section>

@@ -1,22 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import appApi from "../api/appAPi";
+
 export const flow = {
   start: {
     message: async (params: any) => {
-      const response = await fetch(
-        "http://localhost:3000/susho-asistente/user-question",
+      const { data } = await appApi.post(
+        "/susho-asistente/user-question",
         {
-          method: "POST",
+          question: "cliente dijo hola",
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ question: "cliente dijo hola" }),
         }
       );
-
-      const { data } = await response.json();
-
-      await params.injectMessage(data.response);
+      return data.data.response;
     },
     path: "show_art",
   },

@@ -1,139 +1,149 @@
 interface SeedProduct {
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  procedencia: string;
-  ingredientes: string[];
-  popularidad: number;
-  vegetariano: boolean;
-  stock: number;
-  imagen: string;
-  calorias: number;
-  categoria: string;
+  name: string;
+  price: number;
+  category: string;
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
 }
 
 export const sushis: SeedProduct[] = [
   {
-    nombre: 'nigiri',
-    descripcion:
-      'pequeña bola de arroz de sushi sobre la que se coloca una lámina de pescado o marisco, a menudo acompañada de wasabi.',
-    precio: 5.99,
-    procedencia: 'japón',
-    ingredientes: ['arroz de sushi', 'pescado crudo', 'wasabi'],
-    popularidad: 9,
-    vegetariano: false,
-    stock: 50,
-    imagen: 'https://miweb.com/images/nigiri.jpg',
-    calorias: 200,
-    categoria: 'nigiri',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-sushi-1238248_1920.jpg',
+    },
+    name: 'Salmon Sushi',
+    category: 'Nigiri',
+    price: 3.5,
   },
   {
-    nombre: 'maki tradicional',
-    descripcion:
-      'rollos de arroz y otros ingredientes envueltos en alga nori, cortados en piezas pequeñas.',
-    precio: 7.49,
-    procedencia: 'japón',
-    ingredientes: ['arroz de sushi', 'alga nori', 'pescado', 'vegetales'],
-    popularidad: 8,
-    vegetariano: false,
-    stock: 30,
-    imagen: 'https://miweb.com/images/maki.jpg',
-    calorias: 350,
-    categoria: 'rollos',
-  },
-
-  {
-    nombre: 'maki de pollo',
-    descripcion:
-      'rollos de arroz y otros ingredientes envueltos en alga nori, cortados en piezas pequeñas.',
-    precio: 3,
-    procedencia: 'japón',
-    ingredientes: ['arroz de sushi', 'alga nori', 'pollo', 'vegetales'],
-    popularidad: 8,
-    vegetariano: false,
-    stock: 10,
-    imagen: 'https://miweb.com/images/maki-de-pollo.jpg',
-    calorias: 200,
-    categoria: 'rollos',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2020/02/07/10/16/sushi-4828700_1920.jpg',
+    },
+    name: 'Tuna Sushi Roll',
+    category: 'Roll',
+    price: 4.5,
   },
   {
-    nombre: 'sashimi',
-    descripcion: 'finos cortes de pescado o marisco crudo, servidos sin arroz.',
-    precio: 8.99,
-    procedencia: 'japón',
-    ingredientes: ['pescado crudo', 'salsa de soja', 'wasabi'],
-    popularidad: 7,
-    vegetariano: false,
-    stock: 25,
-    imagen: 'https://miweb.com/images/sashimi.jpg',
-    calorias: 150,
-    categoria: 'sashimi',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2020/04/06/17/51/sushi-5010306_1920.jpg',
+    },
+    name: 'Avocado Maki',
+    category: 'Maki',
+    price: 3.0,
   },
   {
-    nombre: 'california roll',
-    descripcion:
-      'rollos de sushi rellenos de cangrejo, aguacate y pepino, a menudo recubiertos de semillas de sésamo.',
-    precio: 6.99,
-    procedencia: 'estados unidos',
-    ingredientes: [
-      'arroz de sushi',
-      'cangrejo',
-      'aguacate',
-      'pepino',
-      'alga nori',
-    ],
-    popularidad: 10,
-    vegetariano: true,
-    stock: 40,
-    imagen: 'https://miweb.com/images/california_roll.jpg',
-    calorias: 300,
-    categoria: 'rollos',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2016/03/05/19/02/sushi-1238247_1920.jpg',
+    },
+    name: 'Shrimp Tempura Roll',
+    category: 'Roll',
+    price: 5.0,
   },
   {
-    nombre: 'temaki',
-    descripcion:
-      'cono de alga nori relleno de arroz y otros ingredientes como pescado, vegetales y salsas.',
-    precio: 7.99,
-    procedencia: 'japón',
-    ingredientes: ['arroz de sushi', 'alga nori', 'pescado', 'vegetales'],
-    popularidad: 8,
-    vegetariano: false,
-    stock: 20,
-    imagen: 'https://miweb.com/images/temaki.jpg',
-    calorias: 250,
-    categoria: 'rollos',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2017/01/22/19/40/sushi-2006296_1920.jpg',
+    },
+    name: 'Vegetable Sushi',
+    category: 'Vegetarian',
+    price: 3.8,
   },
   {
-    nombre: 'uramaki',
-    descripcion:
-      'rollos de sushi donde el arroz está por fuera y el alga nori por dentro, rellenos de diversos ingredientes.',
-    precio: 8.49,
-    procedencia: 'japón',
-    ingredientes: [
-      'arroz de sushi',
-      'alga nori',
-      'pescado',
-      'vegetales',
-      'semillas de sésamo',
-    ],
-    popularidad: 9,
-    vegetariano: false,
-    stock: 35,
-    imagen: 'https://miweb.com/images/uramaki.jpg',
-    calorias: 320,
-    categoria: 'rollos',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2017/09/02/20/41/sushi-2704110_1920.jpg',
+    },
+    name: 'Dragon Roll',
+    category: 'Special Roll',
+    price: 6.5,
   },
   {
-    nombre: 'coca',
-    descripcion: 'bebida gaseosa refrescante.',
-    precio: 1.99,
-    procedencia: 'méxico',
-    ingredientes: ['agua', 'azúcar', 'gas carbónico'],
-    popularidad: 10,
-    vegetariano: true,
-    stock: 100,
-    imagen: 'https://miweb.com/images/coca.jpg',
-    calorias: 150,
-    categoria: 'bebidas',
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2016/11/21/17/13/sushi-1841986_1920.jpg',
+    },
+    name: 'California Roll',
+    category: 'Roll',
+    price: 4.0,
+  },
+  {
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2017/06/06/09/53/sushi-2370757_1920.jpg',
+    },
+    name: 'Eel Sushi',
+    category: 'Nigiri',
+    price: 5.5,
+  },
+  {
+    image: {
+      thumbnail:
+        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_640.jpg',
+      mobile:
+        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_960_720.jpg',
+      tablet:
+        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_1280_720.jpg',
+      desktop:
+        'https://cdn.pixabay.com/photo/2018/08/01/21/11/sushi-3577897_1920.jpg',
+    },
+    name: 'Spicy Tuna Roll',
+    category: 'Roll',
+    price: 5.0,
   },
 ];

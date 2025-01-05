@@ -7,27 +7,23 @@ export class Product extends Document {
     unique: true,
     index: true,
   })
-  nombre: string;
+  name: string;
+
   @Prop()
-  descripcion: string;
+  price: number;
+
+  @Prop({
+    type: Object,
+  })
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+
   @Prop()
-  precio: number;
-  @Prop()
-  procedencia: string;
-  @Prop()
-  ingredientes: string[];
-  @Prop()
-  popularidad: number;
-  @Prop()
-  vegetariano: boolean;
-  @Prop()
-  stock: number;
-  @Prop()
-  imagen: string;
-  @Prop()
-  calorias: number;
-  @Prop()
-  categoria: string;
+  category: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

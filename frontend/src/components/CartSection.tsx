@@ -1,20 +1,15 @@
-import { useContext } from "react";
-import CartContext from "../context/cart/CartContext";
 import { EmptyProduct, ListCartProducts, ShowTotal } from "./";
-import { ProductInCart } from "../interfaces";
 
 interface Props {
   toggleModal: () => void;
 }
 export const CartSection = ({ toggleModal }: Props) => {
-  const { state, total, quantity } = useContext(CartContext);
-  const keys = Object.keys(state);
-  const productsInCart: ProductInCart[] = Object.values(state);
-
+  const keys = [1];
+  const productsInCart = [];
   return (
     <section className="cart-section">
       <h3>
-        You Cart (<span className="total-quantity">{quantity}</span>)
+        You Cart (<span className="total-quantity">{60}</span>)
       </h3>
       <article className="cart">
         {keys.length < 1 ? (
@@ -22,7 +17,7 @@ export const CartSection = ({ toggleModal }: Props) => {
         ) : (
           <>
             <ListCartProducts productsInCart={productsInCart} />
-            <ShowTotal total={total} toggleModal={toggleModal} />
+            <ShowTotal total={5000} toggleModal={toggleModal} />
           </>
         )}
       </article>

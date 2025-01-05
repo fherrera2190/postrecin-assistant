@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { Product } from "../interfaces";
 import { CardBody, CardFooter, CardHeader } from "./";
 import ProductContext from "../context/product/ProductContext";
-import CartContext from "../context/cart/CartContext";
 import { useProduct } from "../hooks";
 
 interface Props {
@@ -11,15 +9,8 @@ interface Props {
 
 export const CardProduct = ({ product }: Props) => {
   const { id, image, name, category, price } = product;
-  const { state, manageProductInCart, removeFromCart } =
-    useContext(CartContext);
 
-  const { counter, increaseBy } = useProduct({
-    manageProductInCart,
-    removeFromCart,
-    product,
-    value: state[product.id]?.quantity || 0,
-  });
+  const { counter, increaseBy } = useProduct({});
 
   return (
     <ProductContext.Provider value={{ counter, increaseBy }}>
