@@ -8,16 +8,16 @@ interface Props {
 }
 
 export const CardProduct = ({ product }: Props) => {
-  const { id, image, name, category, price } = product;
-
-  const { counter, increaseBy } = useProduct({});
+  const { counter, increaseBy } = useProduct({
+    product,
+  });
 
   return (
     <ProductContext.Provider value={{ counter, increaseBy }}>
       <div className="card">
-        <CardHeader id={id} image={image} />
-        <CardBody name={name} category={category} />
-        <CardFooter price={price} />
+        <CardHeader image={product.image} />
+        <CardBody name={product.name} category={product.category} />
+        <CardFooter price={product.price} />
       </div>
     </ProductContext.Provider>
   );

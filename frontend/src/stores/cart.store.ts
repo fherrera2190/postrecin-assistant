@@ -1,23 +1,20 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-interface ItemCart {
-  name: string;
-  quantity: number;
-}
+import { ProductInCart } from "../interfaces";
 
 interface Cart {
-  [key: string]: ItemCart;
+  [key: string]: ProductInCart;
 }
 
 interface CartState {
   cart: Cart;
 
-  totalCart: () => void;
+  total: () => number;
+  totalQuantity: () => number;
 
-  addToCart: () => void;
+  manageProductInCart: (productInCart: ProductInCart) => void;
 
-  removeFromCart: () => void;
+  removeFromCart: (_id: string) => void;
 
   clearCart: () => void;
 
@@ -26,16 +23,45 @@ interface CartState {
 
 export const useCartStore = create<CartState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       cart: {},
 
-      totalCart: () => set(() => ({})),
+      clearCart: () => set({ cart: {}}),
 
-      clearCart: () => set({}),
+      manageProductInCart: (productInCart: ProductInCart) =>
+        set((state) => {
+          if (productInCart.quantity === 0) {
+            const { [productInCart._id]: _, ...rest } = state.cart;
+            void _;
 
-      addToCart: () => set(() => ({})),
+            return { cart: rest };
+          }
+          return {
+            cart: { ...state.cart, [productInCart._id]: productInCart },
+          };
+        }),
       showCart: () => set(() => ({})),
-      removeFromCart: () => set(() => ({})),
+      removeFromCart: (_id: string) =>
+        set((state) => {
+          const { [_id]: _, ...rest } = state.cart;
+          void _;
+          return { cart: rest };
+        }),
+      total: () => {
+        const total = Object.values(get().cart).reduce(
+          (total, { quantity, price }) => total + quantity * price,
+          0
+        );
+
+        return total;
+      },
+      totalQuantity: () => {
+        const totalQuantity = Object.values(get().cart).reduce(
+          (totalQuantity, { quantity }) => totalQuantity + quantity,
+          0
+        );
+        return totalQuantity;
+      },
     }),
     {
       name: "cart-storage",

@@ -1,15 +1,18 @@
+import { useCartStore } from "../stores/cart.store";
 import { EmptyProduct, ListCartProducts, ShowTotal } from "./";
 
 interface Props {
   toggleModal: () => void;
 }
 export const CartSection = ({ toggleModal }: Props) => {
-  const keys = [1];
-  const productsInCart = [];
+  const cart = useCartStore((state) => state.cart);
+  const totalQuantity = useCartStore((state) => state.totalQuantity);
+  const productsInCart = Object.values(cart);
+  const keys = Object.keys(cart);
   return (
     <section className="cart-section">
       <h3>
-        You Cart (<span className="total-quantity">{60}</span>)
+        You Cart (<span className="total-quantity">{totalQuantity()}</span>)
       </h3>
       <article className="cart">
         {keys.length < 1 ? (
@@ -17,7 +20,7 @@ export const CartSection = ({ toggleModal }: Props) => {
         ) : (
           <>
             <ListCartProducts productsInCart={productsInCart} />
-            <ShowTotal total={5000} toggleModal={toggleModal} />
+            <ShowTotal toggleModal={toggleModal} />
           </>
         )}
       </article>

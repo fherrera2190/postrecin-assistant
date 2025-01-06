@@ -4,6 +4,10 @@ import ProductContext from "../context/product/ProductContext";
 export const ButtonAddProduct = () => {
   const { increaseBy } = useContext(ProductContext);
 
+  
+
+
+
   return (
     <div className="btn_product card__button">
       <button className="button__add increment" onClick={() => increaseBy(1)}>

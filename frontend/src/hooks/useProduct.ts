@@ -1,19 +1,19 @@
-import {  useEffect, useState } from "react";
-import { Product, ProductInCart } from "../interfaces";
+import { useEffect, useState } from "react";
+import { Product } from "../interfaces";
+import { useCartStore } from "../stores/cart.store";
 
 interface UseProductArgs {
-  manageProductInCart: (product: ProductInCart) => void;
-  removeFromCart: (product: Product) => void;
-  value?: number;
   product: Product;
 }
+export const useProduct = ({ product }: UseProductArgs) => {
+  const cart = useCartStore((state) => state.cart);
 
-export const useProduct = ({
-  manageProductInCart,
-  product,
-  value = 0,
-}: UseProductArgs) => {
-  const [counter, setCounter] = useState(value);
+  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(cart[product._id]?.quantity || 0);
+
+  const manageProductInCart = useCartStore(
+    (state) => state.manageProductInCart
+  );
 
   const increaseBy = (value: number) => {
     const newValue = Math.max(0, counter + value);
@@ -22,8 +22,8 @@ export const useProduct = ({
   };
 
   useEffect(() => {
-    setCounter(0);
-  }, []);
+    setCounter(cart[product._id]?.quantity || 0);
+  }, [cart, product._id]);
 
   return { counter, increaseBy };
 };

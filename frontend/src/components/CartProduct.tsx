@@ -1,10 +1,13 @@
 import { ProductInCart } from "../interfaces";
+import { useCartStore } from "../stores/cart.store";
 
 interface Props {
   product: ProductInCart;
 }
 
 export const CartProduct = ({ product }: Props) => {
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+
   return (
     <div className="product-select">
       <div className="product-detail">
@@ -24,7 +27,10 @@ export const CartProduct = ({ product }: Props) => {
           </p>
         </div>
       </div>
-      <button className="remove-button" onClick={() => {}}>
+      <button
+        className="remove-button"
+        onClick={() => removeFromCart(product._id)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"

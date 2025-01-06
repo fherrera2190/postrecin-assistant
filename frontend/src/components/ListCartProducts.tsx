@@ -6,10 +6,11 @@ interface Props {
 }
 
 export const ListCartProducts = ({ productsInCart }: Props) => {
+
   return (
     <>
       {productsInCart.map((product: ProductInCart) => (
-        <CartProduct key={product.id} product={product} />
+        <CartProduct key={product._id} product={product} />
       ))}
     </>
   );

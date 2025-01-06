@@ -1,6 +1,9 @@
+import { useCartStore } from "../stores/cart.store";
 import { ListOrderProducts } from "./ListOrderProducts";
 
 export const BuyModal = ({ modal }: { modal: boolean }) => {
+  const total = useCartStore((state) => state.total);
+  const clearCart = useCartStore((state) => state.clearCart);
   return (
     <div className="modal" style={{ display: modal ? "block" : "none" }}>
       <div className="modal-content">
@@ -24,13 +27,19 @@ export const BuyModal = ({ modal }: { modal: boolean }) => {
         <section className="modal-section">
           <h6>We hope you enjoy your food!</h6>
           <article>
-            <ListOrderProducts productsInCart={[]} />
+            <ListOrderProducts />
             <p className="order-total">
               <small className="text-order-total">Order Total</small>
-              <span>${12}</span>
+              <span>${total()}</span>
             </p>
           </article>
-          <button className="btn_generic" onClick={() => {}}>
+          <button
+            className="btn_generic"
+            onClick={() => {
+              clearCart();
+              window.location.reload();
+            }}
+          >
             Start new order
           </button>
         </section>

@@ -1,17 +1,16 @@
-export const ShowTotal = ({
-  total,
-  toggleModal,
-}: {
-  total: number;
-  toggleModal: () => void;
-}) => {
+import { useCartStore } from "../stores/cart.store";
+import { BtnConfirmOrder } from "./BtnConfirmOrder";
+
+export const ShowTotal = ({ toggleModal }: { toggleModal: () => void }) => {
+  const total = useCartStore((state) => state.total);
+
   return (
     <>
       <div className="cart-total">
         <p>
           <small>Order Total</small>
         </p>
-        <h4 className="total-price">${total}</h4>
+        <h4 className="total-price">${total()}</h4>
       </div>
       <div className="delivery">
         <div>
@@ -26,9 +25,7 @@ export const ShowTotal = ({
           </small>
         </p>
       </div>
-      <button className="btn_generic" onClick={toggleModal}>
-        Confirm Order
-      </button>
+      <BtnConfirmOrder toggleModal={toggleModal} />
     </>
   );
 };

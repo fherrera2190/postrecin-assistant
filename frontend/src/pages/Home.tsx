@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BuyModal, CartSection, ListProducts } from "../components";
-import { MyChatBot } from "../components/MyChatBot";
-import appApi from "../api/appAPi";
+// import { MyChatBot } from "../components/MyChatBot";
+import appApi from "../api/appApi";
 
 export const Home = () => {
   const [modal, setModal] = useState(false);
@@ -30,9 +30,9 @@ export const Home = () => {
         </section>
         <CartSection toggleModal={toggleModal} />
       </main>
-      <footer>
+      {/* <footer>
         <MyChatBot />
-      </footer>
+      </footer> */}
 
       <BuyModal modal={modal} />
     </>

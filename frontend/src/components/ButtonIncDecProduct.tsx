@@ -3,7 +3,7 @@ import ProductContext from "../context/product/ProductContext";
 
 export const ButtonIncDecProduct = () => {
   const { counter, increaseBy } = useContext(ProductContext);
-
+  
   return (
     <>
       <div className="btn_product card__button__quantity">
