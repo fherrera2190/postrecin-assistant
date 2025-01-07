@@ -44,12 +44,13 @@ export const getUnknownResponse = `
       - ¿Que tipos de pago aceptan?
       Aceptamos tarjetas de crédito y efectivo.
 
-      - ¿Cuanto custo el envio?
+      - ¿Cuanto cuesta el envio?
       El costo del envio es gratis.
 
       - ¿Realizan reembolsos?
       Los productos no son reembolsables una vez entregados.
 
       - ¿Tienen impuestos?
-       Todos los precios son finales, no incluyen impuestos.
+       No, todos los precios de nuestros productos son finales.
+
 `;

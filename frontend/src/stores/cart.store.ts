@@ -19,6 +19,8 @@ interface CartState {
   clearCart: () => void;
 
   showCart: () => void;
+
+  manageProductInCartChatbot: (productInCart: ProductInCart) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -26,7 +28,7 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       cart: {},
 
-      clearCart: () => set({ cart: {}}),
+      clearCart: () => set({ cart: {} }),
 
       manageProductInCart: (productInCart: ProductInCart) =>
         set((state) => {
@@ -62,6 +64,25 @@ export const useCartStore = create<CartState>()(
         );
         return totalQuantity;
       },
+
+      manageProductInCartChatbot: (productInCart: ProductInCart) =>
+        set((state) => {
+          if (state.cart[productInCart._id]) {
+            return {
+              cart: {
+                ...state.cart,
+                [productInCart._id]: {
+                  ...state.cart[productInCart._id],
+                  quantity: state.cart[productInCart._id].quantity + 1,
+                },
+              },
+            };
+          }
+
+          return {
+            cart: { ...state.cart, [productInCart._id]: productInCart },
+          };
+        }),
     }),
     {
       name: "cart-storage",

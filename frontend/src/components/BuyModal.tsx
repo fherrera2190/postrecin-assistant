@@ -2,8 +2,7 @@ import { useCartStore } from "../stores/cart.store";
 import { ListOrderProducts } from "./ListOrderProducts";
 
 export const BuyModal = ({ modal }: { modal: boolean }) => {
-  const total = useCartStore((state) => state.total);
-  const clearCart = useCartStore((state) => state.clearCart);
+  const state = useCartStore((state) => state);
   return (
     <div className="modal" style={{ display: modal ? "block" : "none" }}>
       <div className="modal-content">
@@ -30,13 +29,13 @@ export const BuyModal = ({ modal }: { modal: boolean }) => {
             <ListOrderProducts />
             <p className="order-total">
               <small className="text-order-total">Order Total</small>
-              <span>${total()}</span>
+              <span>${state.total()}</span>
             </p>
           </article>
           <button
             className="btn_generic"
             onClick={() => {
-              clearCart();
+              state.clearCart();
               window.location.reload();
             }}
           >

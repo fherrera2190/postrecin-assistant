@@ -16,3 +16,21 @@ export interface ProductImage {
 export interface ProductInCart extends Product {
   quantity: number;
 }
+
+export interface GetInstructionResponse {
+  ok: boolean;
+  data: GetInstructionData;
+}
+
+export interface GetInstructionData {
+  instruction: string;
+}
+
+export interface GetQuestionResponse {
+  ok: boolean;
+  data: GetQuestionResponseData;
+}
+
+export interface GetQuestionResponseData {
+  response: string;
+}

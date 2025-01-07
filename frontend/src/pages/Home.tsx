@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { BuyModal, CartSection, ListProducts } from "../components";
 import { MyChatBot } from "../components/MyChatBot";
-import appApi from "../api/appApi";
+import { ProductsService } from "../service/ProductsService.service";
+import { Product } from "../interfaces";
 
 export const Home = () => {
+  const productsService = new ProductsService();
   const [modal, setModal] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const toggleModal = () => {
     setModal(!modal);
   };
 
   useEffect(() => {
-    appApi
-      .get("/products")
+    productsService
+      .getProducts()
       .then((res) => {
-        setProducts(res.data);
+        setProducts(res);
       })
       .catch((error) => {
         console.log(error);

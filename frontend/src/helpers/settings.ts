@@ -30,6 +30,6 @@ export const settings = {
   },
   tooltip: {
     // mode: "ALWAYS",
-    text: "Ask me anything",
+    text: "Te ayudo?",
   },
 };

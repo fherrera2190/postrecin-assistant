@@ -113,6 +113,12 @@ Ejemplos:
 - Entrada: "clear cart"
   Salida: "delete_cart"
 
+- Entrada: "Borrar pedido"
+  Salida: "delete_cart"
+
+- Entrada: "borrar el pedido"
+  Salida: "delete_cart"
+
 
 7. Si la entrada es no, entonces responde "no".
 
