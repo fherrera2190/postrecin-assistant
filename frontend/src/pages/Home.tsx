@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BuyModal, CartSection, ListProducts } from "../components";
-// import { MyChatBot } from "../components/MyChatBot";
+import { MyChatBot } from "../components/MyChatBot";
 import appApi from "../api/appApi";
 
 export const Home = () => {
@@ -30,9 +30,9 @@ export const Home = () => {
         </section>
         <CartSection toggleModal={toggleModal} />
       </main>
-      {/* <footer>
+      <footer>
         <MyChatBot />
-      </footer> */}
+      </footer>
 
       <BuyModal modal={modal} />
     </>
