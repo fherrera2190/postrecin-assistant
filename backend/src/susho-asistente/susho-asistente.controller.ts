@@ -14,4 +14,9 @@ export class SushoAsistenteController {
   async getInstruction(@Body() questionDto: QuestionDto) {
     return this.sushoAsistenteService.getInstruction(questionDto);
   }
+
+  @Post('get-unknown-response')
+  async getUnknownResponse(@Body() questionDto: QuestionDto) {
+    return this.sushoAsistenteService.getUnknownResponse(questionDto);
+  }
 }
