@@ -4,12 +4,13 @@ import { QuestionDto } from './dtos/question.dto';
 import { getInstructionUseCase } from './use-cases/get-instruction.use-case';
 import { getResponseUseCase } from './use-cases/get-response.use-case';
 import { getUnknownResponseUseCase } from './use-cases/get-unknown-response.use-case';
+import { EnvConfiguration } from 'src/config/app.config';
 
 @Injectable()
 export class SushoAsistenteService {
   private openai = new OpenAI({
-    baseURL: 'http://localhost:11434/v1',
-    apiKey: '',
+    baseURL: EnvConfiguration().baseUrl,
+    apiKey: EnvConfiguration().apiKey,
   });
 
   async getResponse(questionDto: QuestionDto) {

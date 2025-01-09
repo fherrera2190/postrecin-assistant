@@ -10,7 +10,6 @@ export const getChatCompletionResponseWithoutTools = async (
     model: EnvConfiguration().model,
     messages,
     stream: false,
-    tool_choice: 'auto',
     temperature,
   });
   return response;

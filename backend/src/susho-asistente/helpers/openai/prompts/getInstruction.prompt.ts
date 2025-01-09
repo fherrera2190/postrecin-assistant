@@ -99,6 +99,15 @@ Ejemplos:
 - Entrada: "terminar"
   Salida: "exit"
 
+- Entrada: "cerrar"
+  Salida: "exit"
+
+- Entrada: "bye"
+  Salida: "exit"
+
+- Entrada: "adios"
+  Salida: "exit"
+
 6. Si la entrada es borrar carrito de compras, borrar carrito, o similares responde "delete_cart".
 
 - Entrada: "borrar carrito de compras"

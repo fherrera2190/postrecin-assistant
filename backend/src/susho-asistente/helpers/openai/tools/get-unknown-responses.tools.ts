@@ -14,10 +14,8 @@ export const toolsUnknownResponses: any = [
 ];
 
 const all_products = async () => {
-  console.log('Estos son los productos');
   const response = await fetch('http://localhost:3000/products');
   const products = await response.json();
-  console.log(`Estos son los productos: ${JSON.stringify(products)}`);
   return `Estos son los productos: ${JSON.stringify(products)}`;
 };
 
