@@ -10,6 +10,7 @@ import {
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 
 @Controller('orders')
 export class OrdersController {
@@ -17,6 +18,7 @@ export class OrdersController {
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
+    console.log(createOrderDto);
     return this.ordersService.create(createOrderDto);
   }
 
@@ -27,7 +29,7 @@ export class OrdersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(+id);
+    return this.ordersService.findOne(id);
   }
 
   @Patch(':id')
@@ -36,7 +38,7 @@ export class OrdersController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ordersService.remove(+id);
+  deleteOne(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.ordersService.remove(id);
   }
 }

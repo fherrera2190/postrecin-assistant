@@ -36,21 +36,28 @@ export class OrdersService {
       total += price * quantity;
     }
 
-    const order = this.ordersModel.create({
+    const order = new this.ordersModel({
       userId: 'userTest',
       total,
       items: orderItems,
     });
 
-    return order;
+    order.orderId = order._id.toString().substring(0, 8);
+
+    const result = await order.save();
+    return result;
   }
 
   findAll() {
     return `This action returns all orders`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  findOne(id: string) {
+    try {
+      return `This action returns a #${id} order`;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   update(id: number, updateOrderDto: UpdateOrderDto) {
@@ -58,7 +65,7 @@ export class OrdersService {
     return `This action updates a #${id} order`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} order`;
   }
 }

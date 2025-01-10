@@ -3,13 +3,12 @@ import { Product } from "../../interfaces";
 import { useCartStore } from "../../stores/cart.store";
 import { delay } from "../delay";
 import { ProductsService } from "../../service/ProductsService.service";
-const productsService = new ProductsService();
 
 export const showProducts = {
   show_products: {
     message: "Estos son nuestro productos quieres elegir alguno?",
     checkboxes: async () => {
-      const response = await productsService.getProducts();
+      const response = await ProductsService.getProducts();
       const products: string[] = response.map((product) => product.name);
       return { items: products, sendOutput: false };
     },
@@ -23,7 +22,7 @@ export const showProducts = {
         return product.trim();
       });
 
-      let products = await productsService.getProducts();
+      let products = await ProductsService.getProducts();
 
       products = products.filter((product: Product) =>
         selectedProducts.includes(product.name)

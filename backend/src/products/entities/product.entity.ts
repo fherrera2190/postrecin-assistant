@@ -18,7 +18,7 @@ export class Product extends Document {
   @Prop({
     type: Object,
   })
-  image: {
+  image?: {
     thumbnail: string;
     mobile: string;
     tablet: string;
@@ -29,7 +29,7 @@ export class Product extends Document {
   category: string;
 
   @Prop()
-  ingredients: string[];
+  ingredients?: string[];
 
   @Prop()
   calories: number;

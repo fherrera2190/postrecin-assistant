@@ -6,6 +6,7 @@ import { showCart } from "./showCart";
 import { showProducts } from "./showProducts";
 import { start } from "./start";
 import { unknownCommand } from "./unknownCommand";
+import { confirmPurchase } from "./confirmPurchase";
 
 export const flow: Flow = {
   ...deleteCart,
@@ -15,4 +16,5 @@ export const flow: Flow = {
   ...showProducts,
   ...start,
   ...unknownCommand,
+  ...confirmPurchase,
 };

@@ -1,13 +1,12 @@
 import { Params } from "react-chatbotify";
 import { delay } from "../delay";
 import { ChatbotService } from "../../service/ChatbotService.service";
-const chatbotservice = new ChatbotService();
 
 export const unknownCommand = {
   unknown_command: {
     message: async (params: Params) => {
       try {
-        const response = await chatbotservice.GetUnknownResponse(
+        const response = await ChatbotService.GetUnknownResponse(
           params.userInput.trim()
         );
         console.log(response);

@@ -1,13 +1,11 @@
 import { Params } from "react-chatbotify";
 import { ChatbotService } from "../../service/ChatbotService.service";
 
-const chatbotservice = new ChatbotService();
-
 export const end = {
   end: {
     message: async (params: Params) => {
       try {
-        const response = await chatbotservice.GetResponse(
+        const response = await ChatbotService.GetResponse(
           "saludo de despedida al cliente"
         );
 

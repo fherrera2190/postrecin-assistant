@@ -2,7 +2,6 @@ import { Params } from "react-chatbotify";
 import { useCartStore } from "../../stores/cart.store";
 import { delay } from "../delay";
 import { ChatbotService } from "../../service/ChatbotService.service";
-const chatbotservice = new ChatbotService();
 
 export const deleteCart = {
   delete_cart: {
@@ -17,7 +16,7 @@ export const deleteCart = {
     },
 
     path: async (params: Params) => {
-      const instruction = await chatbotservice.GetIntructions(
+      const instruction = await ChatbotService.GetIntructions(
         params.userInput.trim()
       );
 

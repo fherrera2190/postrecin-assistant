@@ -2,7 +2,6 @@ import { Params } from "react-chatbotify";
 import { ChatbotService } from "../../service/ChatbotService.service";
 import { delay } from "../delay";
 
-const chatbotservice = new ChatbotService();
 const menuOptions = [
   "Ver productos",
   "Ver carrito",
@@ -19,7 +18,7 @@ export const getInstruction = {
     },
     options: menuOptions,
     path: async (params: Params) => {
-      const instruction = await chatbotservice.GetIntructions(
+      const instruction = await ChatbotService.GetIntructions(
         params.userInput.trim()
       );
       console.log(instruction);

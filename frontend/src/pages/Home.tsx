@@ -5,7 +5,6 @@ import { ProductsService } from "../service/ProductsService.service";
 import { Product } from "../interfaces";
 
 export const Home = () => {
-  const productsService = new ProductsService();
   const [modal, setModal] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const toggleModal = () => {
@@ -13,8 +12,7 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    productsService
-      .getProducts()
+    ProductsService.getProducts()
       .then((res) => {
         setProducts(res);
       })

@@ -37,7 +37,7 @@ export const getUnknownResponseUseCase = async (
       functions,
     );
     messages.push(msgFunction);
-    response = await getChatCompletionResponseWithoutTools(openai, messages, 0);
+    response = await getChatCompletionResponseWithoutTools(openai, messages, 1);
     const result = {
       ok: true,
       data: {

@@ -54,3 +54,22 @@ export interface DataText {
 export interface DataConversational {
   userMessages: Message[];
 }
+
+// CreateOrderResponse
+
+export interface CreateOrderResponse {
+  userId: string;
+  status: string;
+  total: number;
+  items: Item[];
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
+
+export interface Item {
+  name: string;
+  price: number;
+  quantity: number;
+}

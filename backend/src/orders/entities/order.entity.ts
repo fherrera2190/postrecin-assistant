@@ -6,6 +6,9 @@ export class Order {
   @Prop()
   userId: string;
 
+  @Prop()
+  orderId: string;
+
   @Prop({
     enum: ['placed', 'shipped', 'delivered', 'cancelled', 'returned'],
     default: 'placed',

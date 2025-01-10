@@ -21,7 +21,7 @@ export const settings = {
   //   defaultOpen: true,
   // },
   header: {
-    title: "Sushiko Assistant",
+    title: "Postrecin",
     buttons: [
       // Button.NOTIFICATION_BUTTON,
       // Button.AUDIO_BUTTON,

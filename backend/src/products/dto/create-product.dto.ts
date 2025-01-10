@@ -1,6 +1,31 @@
-import { ProductInCart } from 'src/common/interfaces';
+import {
+  IsArray,
+  IsNumber,
+  IsObject,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateProductDto {
-  userId: string;
-  cart: ProductInCart[];
+  @IsString()
+  name: string;
+  @IsNumber()
+  price: number;
+  @IsString()
+  category: string;
+  @IsArray()
+  @IsOptional()
+  ingredients: string[];
+  @IsNumber()
+  popularity: number;
+  @IsNumber()
+  calories: number;
+  @IsOptional()
+  @IsObject()
+  image?: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
 }

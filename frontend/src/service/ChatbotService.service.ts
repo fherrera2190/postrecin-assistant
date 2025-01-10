@@ -6,9 +6,9 @@ import {
 import { HttpService } from "./HttpService.service";
 
 export class ChatbotService {
-  private httpService = new HttpService("/susho-asistente");
+  static httpService = new HttpService("/susho-asistente");
 
-  public async GetIntructions(text: string): Promise<string> {
+  static  async GetIntructions(text: string): Promise<string> {
     const { data } = await this.httpService.post<
       GetInstructionResponse,
       DataText
@@ -18,7 +18,7 @@ export class ChatbotService {
     return data.data.instruction;
   }
 
-  public async GetResponse(text: string): Promise<string> {
+  static async GetResponse(text: string): Promise<string> {
     const { data } = await this.httpService.post<GetQuestionResponse, DataText>(
       "/user-question",
       {
@@ -28,7 +28,7 @@ export class ChatbotService {
     return data.data.response;
   }
 
-  public async GetUnknownResponse(text: string): Promise<string> {
+  static async GetUnknownResponse(text: string): Promise<string> {
     const { data } = await this.httpService.post<GetQuestionResponse, DataText>(
       "/get-unknown-response",
       {

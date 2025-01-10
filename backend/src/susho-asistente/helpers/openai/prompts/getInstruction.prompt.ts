@@ -67,6 +67,10 @@ Ejemplos:
 - Entrada: "puedes confirmar mi compra?"
   Salida: "confirm_purchase"
 
+- Entrada: "confirmar mi pedido"
+  Salida: "confirm_purchase"
+- Entrada: "quiero confirmar mi pedido"
+  Salida: "confirm_purchase"
   
 4. Si la entrada es si responde "yes".
 
