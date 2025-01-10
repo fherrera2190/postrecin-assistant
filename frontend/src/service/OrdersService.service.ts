@@ -1,4 +1,8 @@
-import { CreateOrderResponse, ProductInCart } from "../interfaces";
+import {
+  CreateOrderResponse,
+  DataSendOrder,
+  ProductInCart,
+} from "../interfaces";
 import { HttpService } from "./HttpService.service";
 
 export class OrdersService {
@@ -7,12 +11,10 @@ export class OrdersService {
   static async createOrder(
     cart: ProductInCart[]
   ): Promise<CreateOrderResponse> {
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>", cart);
-
     const { data } = await this.httpService.post<
       CreateOrderResponse,
-      ProductInCart[]
-    >("/", cart);
+      DataSendOrder
+    >("/", { cart });
     return data;
   }
 }

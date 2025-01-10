@@ -1,6 +1,5 @@
 import { Params } from "react-chatbotify";
 import { ChatbotService } from "../../service/ChatbotService.service";
-import { delay } from "../delay";
 
 const menuOptions = [
   "Ver productos",
@@ -13,8 +12,7 @@ const menuOptions = [
 export const getInstruction = {
   getInstruction: {
     message: async () => {
-      await delay(1000);
-      return `Puedes elegir una opción o realizarme una consulta:`;
+      return `You can choose an option or ask me a question:`;
     },
     options: menuOptions,
     path: async (params: Params) => {

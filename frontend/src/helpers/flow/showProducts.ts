@@ -1,7 +1,6 @@
 import { Params } from "react-chatbotify";
 import { Product } from "../../interfaces";
 import { useCartStore } from "../../stores/cart.store";
-import { delay } from "../delay";
 import { ProductsService } from "../../service/ProductsService.service";
 
 export const showProducts = {
@@ -35,7 +34,6 @@ export const showProducts = {
         await params.injectMessage(
           `Hemos agregado 1 ${product.name} a tu pedido 😊`
         );
-        await delay(1000);
       }
     },
 

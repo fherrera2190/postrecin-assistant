@@ -1,14 +1,21 @@
 import { Params } from "react-chatbotify";
 import { ChatbotService } from "../../service/ChatbotService.service";
-import { delay } from "../delay";
 import { useCartStore } from "../../stores/cart.store";
 import { OrdersService } from "../../service/OrdersService.service";
 import { AxiosError } from "axios";
 
 export const confirmPurchase = {
   confirm_purchase: {
-    message: "Estas seguro de querer confirmar el pedido?",
-    options: ["Si", "No"],
+    message: async (params: Params) => {
+
+      if (useCartStore.getState().totalQuantity() < 1) {
+        await params.injectMessage("You have no products in your cart!! 😔");
+        await params.goToPath("getInstruction");
+        return;
+      }
+
+      return "Are you sure you want to confirm your order?";
+    },
     path: async (params: Params) => {
       try {
         const instruction = await ChatbotService.GetIntructions(
@@ -17,29 +24,31 @@ export const confirmPurchase = {
 
         switch (instruction) {
           case "yes": {
-            await params.injectMessage("Muchas gracias por tu compra!!");
             const cartState = useCartStore.getState().cart;
             const cart = Object.values(cartState);
             const order = await OrdersService.createOrder(cart);
+
+            console.log(order);
             const response = await ChatbotService.GetResponse(
-              `show order to customer ${order}`
+              `show order to customer ${JSON.stringify(order)}`
             );
-            console.log(response);
-            await delay(1000);
+            useCartStore.getState().clearCart();
+            await params.injectMessage(response);
             return "getInstruction";
           }
           case "no":
             return "getInstruction";
           default:
-            await params.injectMessage("No entendi tu respuesta");
+            await params.injectMessage("I didn’t understand your answer.");
             return;
         }
       } catch (error) {
-        //console.log(error);
         if (error instanceof AxiosError) {
           console.log(error.response?.data);
           throw new Error(error.response?.data);
         }
+        await params.injectMessage("I something went wrong.");
+        return "getInstruction";
       }
     },
   },

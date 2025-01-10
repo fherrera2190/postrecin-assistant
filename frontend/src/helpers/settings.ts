@@ -12,14 +12,19 @@ export const settings = {
   general: {
     showFooter: false,
     flowStartTrigger: "ON_CHATBOT_INTERACT",
+    primaryColor: "rgb(211, 125, 98)",
+    secondaryColor: "rgb(211, 85, 26)",
   },
-  // chatHistory: { storageKey: "example_basic_form" },
+  chatHistory: {
+    disabled: true,
+  },
   userBubble: {
     showAvatar: true,
   },
   // chatWindow: {
   //   defaultOpen: true,
   // },
+  botBubble: { simStream: true },
   header: {
     title: "Postrecin",
     buttons: [
@@ -30,6 +35,6 @@ export const settings = {
   },
   tooltip: {
     // mode: "ALWAYS",
-    text: "Te ayudo?",
+    text: "Can i help you?",
   },
 };

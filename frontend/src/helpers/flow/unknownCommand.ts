@@ -1,5 +1,4 @@
 import { Params } from "react-chatbotify";
-import { delay } from "../delay";
 import { ChatbotService } from "../../service/ChatbotService.service";
 
 export const unknownCommand = {
@@ -11,7 +10,6 @@ export const unknownCommand = {
         );
         console.log(response);
         //Tengo Revisar problema aca espera un msj????
-        delay(1000);
         await params.injectMessage(response);
         await params.goToPath("getInstruction");
       } catch (error) {

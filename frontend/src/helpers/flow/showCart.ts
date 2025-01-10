@@ -1,6 +1,5 @@
 import { Params } from "react-chatbotify";
 import { useCartStore } from "../../stores/cart.store";
-import { delay } from "../delay";
 
 const showCartOptions = [
   "Agregar mas productos",
@@ -23,7 +22,6 @@ export const showCart = {
           await params.injectMessage(
             `${productInCart.quantity} x ${productInCart.name}`
           );
-          await delay(1000);
         }
 
         await params.injectMessage(

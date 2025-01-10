@@ -51,9 +51,6 @@ export interface Message {
 export interface DataText {
   question: string;
 }
-export interface DataConversational {
-  userMessages: Message[];
-}
 
 // CreateOrderResponse
 
@@ -72,4 +69,8 @@ export interface Item {
   name: string;
   price: number;
   quantity: number;
+}
+
+export interface DataSendOrder {
+  cart: ProductInCart[];
 }

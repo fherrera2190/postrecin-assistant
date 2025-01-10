@@ -5,7 +5,7 @@ export const start = {
   start: {
     message: async (params: Params) => {
       try {
-        const response = await ChatbotService.GetResponse("cliente dijo hola");
+        const response = await ChatbotService.GetResponse("Welcome the customer with a polite message");
         await params.injectMessage(response);
         await params.goToPath("getInstruction");
       } catch (error) {
