@@ -6,16 +6,12 @@ export class SeedService {
   constructor(@InjectModel('Product') private readonly productModel) {}
 
   async run() {
-    try {
-      await this.productModel.deleteMany({});
+    await this.productModel.deleteMany({});
 
-      await this.productModel.insertMany(sushis);
+    await this.productModel.insertMany(sushis);
 
-      return {
-        seed: 'ok',
-      };
-    } catch (error) {
-      console.log(error);
-    }
+    return {
+      seed: 'ok',
+    };
   }
 }

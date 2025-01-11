@@ -7,7 +7,6 @@ import { AxiosError } from "axios";
 export const confirmPurchase = {
   confirm_purchase: {
     message: async (params: Params) => {
-
       if (useCartStore.getState().totalQuantity() < 1) {
         await params.injectMessage("You have no products in your cart!! 😔");
         await params.goToPath("getInstruction");
@@ -45,7 +44,6 @@ export const confirmPurchase = {
       } catch (error) {
         if (error instanceof AxiosError) {
           console.log(error.response?.data);
-          throw new Error(error.response?.data);
         }
         await params.injectMessage("I something went wrong.");
         return "getInstruction";

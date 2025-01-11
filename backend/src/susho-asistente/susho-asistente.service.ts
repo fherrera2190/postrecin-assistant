@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import OpenAI from 'openai';
 import { QuestionDto } from './dtos/question.dto';
 import { getInstructionUseCase } from './use-cases/get-instruction.use-case';
@@ -13,6 +13,8 @@ export class SushoAsistenteService {
     apiKey: EnvConfiguration().apiKey,
   });
 
+  private readonly logger = new Logger(SushoAsistenteService.name);
+
   async getResponse(questionDto: QuestionDto) {
     const { question } = questionDto;
 
@@ -20,8 +22,7 @@ export class SushoAsistenteService {
       const response = await getResponseUseCase(this.openai, { question });
       return response;
     } catch (error) {
-      console.log(error);
-      return { ok: false, error: error.message };
+      this.handleExceptions(error);
     }
   }
 
@@ -33,8 +34,7 @@ export class SushoAsistenteService {
 
       return response;
     } catch (error) {
-      console.log(error);
-      return { ok: false, error: error.message };
+      this.handleExceptions(error);
     }
   }
 
@@ -47,8 +47,12 @@ export class SushoAsistenteService {
 
       return response;
     } catch (error) {
-      console.log(error);
-      return { ok: false, error: error.message };
+      this.handleExceptions(error);
     }
+  }
+
+  private handleExceptions(error: any) {
+    this.logger.error(error);
+    return error;
   }
 }

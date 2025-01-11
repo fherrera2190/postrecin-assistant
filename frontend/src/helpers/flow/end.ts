@@ -13,7 +13,7 @@ export const end = {
         await params.injectMessage(response);
       } catch (error) {
         if (error instanceof AxiosError) {
-          throw new Error(error.response?.data);
+          console.log(error.response?.data);
         }
         await params.injectMessage("I something went wrong.");
         return "getInstruction";

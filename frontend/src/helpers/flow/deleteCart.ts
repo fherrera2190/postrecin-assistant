@@ -39,7 +39,6 @@ export const deleteCart = {
       } catch (error) {
         if (error instanceof AxiosError) {
           console.log(error.response?.data);
-          throw new Error(error.response?.data);
         }
         await params.injectMessage("I something went wrong.");
         return "getInstruction";
