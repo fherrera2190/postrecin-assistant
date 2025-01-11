@@ -111,12 +111,15 @@ The frontend will run on [http://localhost:5173](http://localhost:5173).
 
 | Method | Endpoint         | Description                |
 |--------|------------------|----------------------------|
-| `POST` | `/chat/query`    | Process a user question    |
+| `POST` | `/postrecin-asistente/user-question`| Process a user question    |
+| `POST` | `/postrecin-asistente/get-instruction`| This endpoint retrieves a command or instruction from the chatbot.|
+| `POST` | `/postrecin-asistente/get-unknown-response`| This endpoint retrieves a response from the chatbot.|
 | `POST` | `/orders`        | Create a new order         |
 | `GET`  | `/products`      | Retrieve all orders        |
+| `POST`  | `/products`      | Create a new product        |
+| `DELETE`  | `/products/:id`      | Delete a product by id        |
+| `PATCH`  | `/products/:id`      | Modify a  product by id        |
 | `GET`  | `/seed`          | Populates the database with initial data|
-| `POST` | `/get-instruction`| This endpoint retrieves a command or instruction from the chatbot.|
-| `POST` | `/get-unknown-response`| This endpoint retrieves a response from the chatbot.|
 
 
 ## **Testing**
