@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { sushis } from './data/sushis';
+import { postre } from './data/sushis';
 @Injectable()
 export class SeedService {
   constructor(@InjectModel('Product') private readonly productModel) {}
@@ -8,7 +8,7 @@ export class SeedService {
   async run() {
     await this.productModel.deleteMany({});
 
-    await this.productModel.insertMany(sushis);
+    await this.productModel.insertMany(postre);
 
     return {
       seed: 'ok',

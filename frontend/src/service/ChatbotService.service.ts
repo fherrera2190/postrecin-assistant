@@ -6,7 +6,7 @@ import {
 import { HttpService } from "./HttpService.service";
 
 export class ChatbotService {
-  static httpService = new HttpService("/susho-asistente");
+  static httpService = new HttpService("/postrecin-asistente");
 
   static  async GetIntructions(text: string): Promise<string> {
     const { data } = await this.httpService.post<

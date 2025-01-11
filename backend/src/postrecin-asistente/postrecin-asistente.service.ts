@@ -7,13 +7,13 @@ import { getUnknownResponseUseCase } from './use-cases/get-unknown-response.use-
 import { EnvConfiguration } from 'src/config/app.config';
 
 @Injectable()
-export class SushoAsistenteService {
+export class PostrecinAsistenteService {
   private openai = new OpenAI({
     baseURL: EnvConfiguration().baseUrl,
     apiKey: EnvConfiguration().apiKey,
   });
 
-  private readonly logger = new Logger(SushoAsistenteService.name);
+  private readonly logger = new Logger(PostrecinAsistenteService.name);
 
   async getResponse(questionDto: QuestionDto) {
     const { question } = questionDto;

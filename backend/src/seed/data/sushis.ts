@@ -13,7 +13,7 @@ interface SeedProduct {
   calories: number;
 }
 
-export const sushis: SeedProduct[] = [
+export const postre: SeedProduct[] = [
   {
     image: {
       thumbnail: './assets/images/image-waffle-thumbnail.jpg',
